@@ -4,7 +4,7 @@ import { eq } from "drizzle-orm";
 import { articles } from "./schema.js";
 
 const pool = new Pool({
-    connectionString: "postgresql://neondb_owner:npg_GrCknyZ6q1xQ@ep-polished-pond-ahe25o12-pooler.c-3.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require",
+    connectionString: process.env.DATABASE_URL || "postgresql://neondb_owner:npg_GrCknyZ6q1xQ@ep-polished-pond-ahe25o12-pooler.c-3.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require",
     ssl: { rejectUnauthorized: false }
 });
 

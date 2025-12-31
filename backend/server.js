@@ -4,7 +4,7 @@ import { Scrape_url } from './scraper.js';
 import { saveArticle, getAllArticles, getArticleById, updateArticle, deleteArticle } from './database.js';
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
