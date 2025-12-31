@@ -1,73 +1,90 @@
-# React + TypeScript + Vite
+# Blog Scraper
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack web application that scrapes blog articles and stores them in a PostgreSQL database with full CRUD functionality.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Frontend:**
+- React 19 + TypeScript
+- Vite
+- React Router DOM
+- Axios
 
-## React Compiler
+**Backend:**
+- Node.js + Express
+- Drizzle ORM
+- PostgreSQL (Neon)
+- Cheerio (web scraping)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+- Scrape blog articles from any URL
+- Save top 5 articles to database
+- View all saved articles in a responsive card layout
+- Edit article details inline
+- Delete articles
+- Professional, light-colored UI
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Project Structure
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+├── backend/
+│   ├── server.js        # Express server & routes
+│   ├── scraper.js       # Web scraping logic
+│   ├── database.js      # CRUD operations
+│   ├── schema.js        # Drizzle schema
+│   └── package.json
+├── src/
+│   ├── Pages/
+│   │   ├── Home.tsx     # Scraper & CRUD interface
+│   │   └── Articles.tsx # Articles display page
+│   ├── App.tsx          # Router setup
+│   └── main.tsx         # Entry point
+├── .env                 # Environment variables
+└── package.json
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## API Endpoints
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/scrape` | Scrape articles from URL |
+| GET | `/api/articles` | Get all articles |
+| GET | `/api/articles/:id` | Get single article |
+| POST | `/api/articles` | Save top 5 articles |
+| PUT | `/api/articles/:id` | Update article |
+| DELETE | `/api/articles/:id` | Delete article |
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Setup
+
+1. Install dependencies:
+```bash
+# Frontend
+npm install
+
+# Backend
+cd backend
+npm install
 ```
+
+2. Configure environment variables in `.env`:
+```
+VITE_BACKEND_URL=http://localhost:5000
+```
+
+3. Run the application:
+```bash
+# Backend (in backend folder)
+npm run dev
+
+# Frontend (in root folder)
+npm run dev
+```
+
+4. Open http://localhost:5173 in your browser
+
+## Usage
+
+1. **Home Page**: Enter a blog URL and click "Scrape & Save Top 5" to fetch and store articles
+2. **Articles Page**: View all saved articles in a responsive card grid
+3. Use Edit/Delete buttons to manage articles

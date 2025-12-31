@@ -1,5 +1,5 @@
 {
-  "schema": "./src/Compoents/schema.tsx",        
+  "schema": "./schema.js",        
   "out": "./drizzle",                 
         
   "dialect": "postgresql",         

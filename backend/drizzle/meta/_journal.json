@@ -8,6 +8,13 @@
       "when": 1767062317960,
       "tag": "0000_exotic_ghost_rider",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1767161808830,
+      "tag": "0001_far_spyke",
+      "breakpoints": true
     }
   ]
 }

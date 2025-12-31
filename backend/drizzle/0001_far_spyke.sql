@@ -1,0 +1,1 @@
+ALTER TABLE "articles" ALTER COLUMN "posted_at" SET DATA TYPE varchar;
